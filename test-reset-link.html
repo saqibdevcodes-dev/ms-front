@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Reset Link URL Handling</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    .result {
+      margin-top: 20px;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      background-color: #f9f9f9;
+    }
+    .success {
+      color: green;
+      font-weight: bold;
+    }
+    .error {
+      color: red;
+      font-weight: bold;
+    }
+    .code {
+      font-family: monospace;
+      background-color: #f0f0f0;
+      padding: 2px 4px;
+      border-radius: 3px;
+    }
+    button {
+      margin-top: 10px;
+      padding: 8px 15px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <h1>Test Reset Password URL Handling</h1>
+  
+  <p>This page tests the URL handling for reset password functionality, specifically handling malformed URLs with trailing % characters.</p>
+  
+  <div>
+    <label for="url-input">Test URL with % character:</label><br>
+    <input type="text" id="url-input" style="width:80%" value="https://api-ms-five.vercel.app/api%" />
+    <button onclick="testUrl()">Test URL</button>
+  </div>
+  
+  <div>
+    <label for="token-input">Test Token:</label><br>
+    <input type="text" id="token-input" style="width:80%" value="testresettoken123" />
+  </div>
+  
+  <div>
+    <label for="email-input">Test Email:</label><br>
+    <input type="email" id="email-input" style="width:80%" value="test@example.com" />
+    <button onclick="testApiCall()">Test API Call</button>
+  </div>
+  
+  <div>
+    <label for="alt-url-input">Alternate API URL:</label><br>
+    <input type="text" id="alt-url-input" style="width:80%" value="https://mystery-api.vercel.app/api" />
+  </div>
+  
+  <div class="result" id="result">Results will appear here.</div>
+  
+  <script>
+    function testUrl() {
+      const urlInput = document.getElementById('url-input').value;
+      const resultDiv = document.getElementById('result');
+      
+      // Clean the URL
+      const cleanedUrl = urlInput.replace(/%$/, '');
+      
+      resultDiv.innerHTML = `
+        <h3>URL Cleaning Test</h3>
+        <p>Original URL: <span class="code">${urlInput}</span></p>
+        <p>Cleaned URL: <span class="code">${cleanedUrl}</span></p>
+        <p>Result: <span class="${urlInput !== cleanedUrl ? 'success' : 'error'}">${urlInput !== cleanedUrl ? 'URL was cleaned successfully!' : 'No cleaning needed'}</span></p>
+      `;
+    }
+    
+    async function testApiCall() {
+      const resultDiv = document.getElementById('result');
+      const urlInput = document.getElementById('url-input').value;
+      const altUrlInput = document.getElementById('alt-url-input').value;
+      const token = document.getElementById('token-input').value;
+      const email = document.getElementById('email-input').value;
+      
+      // Clean the URL
+      const cleanedUrl = urlInput.replace(/%$/, '');
+      
+      resultDiv.innerHTML = `<h3>API Test</h3><p>Testing API calls...</p>`;
+      
+      try {
+        // Try the primary API
+        resultDiv.innerHTML += `<p>Trying primary API: <span class="code">${cleanedUrl}/auth/validate-token</span></p>`;
+        
+        const primaryResponse = await fetch(`${cleanedUrl}/auth/validate-token`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ token, email })
+        });
+        
+        const primaryData = await primaryResponse.json();
+        
+        resultDiv.innerHTML += `
+          <p>Primary API response: <span class="code">${JSON.stringify(primaryData)}</span></p>
+          <p>Status: <span class="${primaryResponse.ok ? 'success' : 'error'}">${primaryResponse.status} ${primaryResponse.statusText}</span></p>
+        `;
+      } catch (err) {
+        resultDiv.innerHTML += `<p>Primary API error: <span class="error">${err.message}</span></p>`;
+        
+        // Try the alternate API
+        try {
+          resultDiv.innerHTML += `<p>Trying alternate API: <span class="code">${altUrlInput}/auth/validate-token</span></p>`;
+          
+          const altResponse = await fetch(`${altUrlInput}/auth/validate-token`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ token, email })
+          });
+          
+          const altData = await altResponse.json();
+          
+          resultDiv.innerHTML += `
+            <p>Alternate API response: <span class="code">${JSON.stringify(altData)}</span></p>
+            <p>Status: <span class="${altResponse.ok ? 'success' : 'error'}">${altResponse.status} ${altResponse.statusText}</span></p>
+          `;
+        } catch (altErr) {
+          resultDiv.innerHTML += `<p>Alternate API error: <span class="error">${altErr.message}</span></p>`;
+        }
+      }
+    }
+  </script>
+</body>
+</html> 

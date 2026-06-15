@@ -1,0 +1,169 @@
+/* No Animations CSS - overrides animations for better performance */
+
+/* Remove all keyframe animations */
+@keyframes fadeIn { 
+  from { opacity: 1; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp { 
+  from { opacity: 1; transform: none; }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes fadeInDown { 
+  from { opacity: 1; transform: none; }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes fadeInLeft { 
+  from { opacity: 1; transform: none; }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes fadeInRight { 
+  from { opacity: 1; transform: none; }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes scaleIn { 
+  from { opacity: 1; transform: none; }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes slideInFromBottom { 
+  from { opacity: 1; transform: none; }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes slideInFromTop { 
+  from { opacity: 1; transform: none; }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes pulse { 
+  0% { transform: none; }
+  50% { transform: none; }
+  100% { transform: none; }
+}
+
+@keyframes shimmer { 
+  0% { background-position: 0 0; }
+  100% { background-position: 0 0; }
+}
+
+@keyframes float { 
+  0% { transform: none; }
+  50% { transform: none; }
+  100% { transform: none; }
+}
+
+@keyframes bounce { 
+  0%, 100% { transform: none; }
+  50% { transform: none; }
+}
+
+@keyframes spin { 
+  from { transform: none; }
+  to { transform: none; }
+}
+
+@keyframes zoomIn { 
+  from { opacity: 1; transform: none; }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes slideIn { 
+  from { transform: none; opacity: 1; }
+  to { transform: none; opacity: 1; }
+}
+
+/* Disable all animation utility classes */
+.animate-fadeIn,
+.animate-fadeInUp,
+.animate-fadeInDown,
+.animate-fadeInLeft,
+.animate-fadeInRight,
+.animate-scaleIn,
+.animate-slideInFromBottom,
+.animate-slideInFromTop,
+.animate-pulse,
+.animate-shimmer,
+.animate-float,
+.animate-bounce,
+.animate-spin,
+.animate-zoomIn,
+.animate-slideIn {
+  animation: none !important;
+}
+
+/* Reset animation delays */
+.animation-delay-100,
+.animation-delay-200,
+.animation-delay-300,
+.animation-delay-400,
+.animation-delay-500,
+.animation-delay-600,
+.animation-delay-700,
+.animation-delay-800,
+.animation-delay-1000,
+.animation-delay-2000,
+.animation-delay-3000,
+.animation-delay-4000,
+.animation-delay-5000 {
+  animation-delay: 0s !important;
+}
+
+/* Reset animation durations */
+.animation-fast,
+.animation-slow,
+.animation-slower {
+  animation-duration: 0s !important;
+}
+
+/* Disable hover transitions */
+.hover-scale,
+.hover-lift,
+.hover-glow {
+  transition: none !important;
+}
+
+.hover-scale:hover {
+  transform: none !important;
+}
+
+.hover-lift:hover {
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.hover-glow:hover {
+  box-shadow: none !important;
+}
+
+/* Disable Vue transitions */
+.fade-enter-active,
+.fade-leave-active,
+.slide-enter-active,
+.slide-leave-active {
+  transition: none !important;
+}
+
+.fade-enter-from,
+.fade-leave-to,
+.slide-enter-from,
+.slide-leave-to {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Disable any other transition-based classes */
+[class*="transition-"] {
+  transition: none !important;
+}
+
+/* Disable loading shimmer effects */
+.loading-shimmer::after {
+  animation: none !important;
+  background: none !important;
+} 

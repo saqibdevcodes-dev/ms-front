@@ -1,0 +1,88 @@
+/* Custom styling for SweetAlert2 */
+
+/* Make the popup smaller */
+.swal2-popup {
+  width: 26em !important;
+  font-size: 0.9rem !important;
+  padding: 1.25rem !important;
+}
+
+/* Smaller title */
+.swal2-title {
+  font-size: 1.5em !important;
+  margin-bottom: 0.5em !important;
+}
+
+/* Smaller content */
+.swal2-html-container {
+  font-size: 1em !important;
+  margin-bottom: 1em !important;
+}
+
+/* Hide the icon */
+.swal2-icon {
+  display: none !important;
+}
+
+/* Make confirmation buttons (OK, Confirm, etc.) more visible */
+.swal2-confirm {
+  background-color: var(--p-primary-500) !important;
+  color: white !important;
+  border-radius: 0.375rem !important;
+  padding: 0.5rem 1rem !important;
+  font-size: 0.9rem !important;
+  font-weight: 600 !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+}
+
+/* Hover state */
+.swal2-confirm:hover {
+  background-color: var(--p-primary-600) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Active/focused state */
+.swal2-confirm:focus, 
+.swal2-confirm:active {
+  background-color: var(--p-primary-700) !important;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.3) !important;
+  outline: none !important;
+}
+
+/* Cancel button styling */
+.swal2-cancel {
+  background-color: var(--p-surface-200) !important;
+  color: var(--p-surface-700) !important;
+  border-radius: 0.375rem !important;
+  padding: 0.5rem 1rem !important;
+  font-size: 0.9rem !important;
+  font-weight: 600 !important;
+  margin-left: 0.5rem !important;
+}
+
+/* Hover state */
+.swal2-cancel:hover {
+  background-color: var(--p-surface-300) !important;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .swal2-popup {
+    background-color: var(--p-surface-800) !important;
+    color: var(--p-surface-50) !important;
+  }
+  
+  .swal2-title, 
+  .swal2-html-container {
+    color: var(--p-surface-50) !important;
+  }
+  
+  .swal2-cancel {
+    background-color: var(--p-surface-700) !important;
+    color: var(--p-surface-200) !important;
+  }
+  
+  .swal2-cancel:hover {
+    background-color: var(--p-surface-600) !important;
+  }
+} 
